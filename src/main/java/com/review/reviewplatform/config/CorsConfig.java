@@ -16,8 +16,8 @@ public class CorsConfig {
                 registry.addMapping("/**") // Allow all endpoints
                         .allowedOriginPatterns("http://localhost:5174") // React app origin
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
-                        .allowedHeaders("*")
-                        .allowCredentials(true); // Enable credentials
+                        .allowedHeaders("*");
+//                        .allowCredentials(true); // Enable credentials
             }
         };
     }
