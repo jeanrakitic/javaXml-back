@@ -11,8 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/categories",
-        produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
-        consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+        produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 @CrossOrigin(origins = "*")
 public class CategoryController {
 

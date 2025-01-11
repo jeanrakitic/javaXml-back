@@ -14,8 +14,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/api/businesses",
-        produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
-        consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+        produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 @CrossOrigin(origins = "*")
 public class BusinessController {
 
