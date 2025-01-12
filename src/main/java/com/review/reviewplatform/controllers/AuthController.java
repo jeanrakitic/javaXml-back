@@ -4,15 +4,16 @@ import com.review.reviewplatform.models.User;
 import com.review.reviewplatform.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping(value = "/auth",
+        produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 public class AuthController {
 
     @Autowired
@@ -22,10 +23,9 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(
-            @RequestParam String username,
-            @RequestParam String password,
-            HttpSession session) {
+    public ResponseEntity<String> login(@RequestBody User loginUser, HttpSession session) {
+        String username = loginUser.getUsername();
+        String password = loginUser.getPassword();
 
         User user = userRepository.findByUsername(username);
 
@@ -37,8 +37,9 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User account is inactive");
         }
 
-        // Store user in session
-        session.setAttribute("user", user);
+        // Avoid storing the entire User object in the session for security reasons
+        session.setAttribute("username", user.getUsername());
+        session.setAttribute("roles", user.isAdmin() ? "ADMIN" : "USER");
 
         return ResponseEntity.ok("Login successful");
     }

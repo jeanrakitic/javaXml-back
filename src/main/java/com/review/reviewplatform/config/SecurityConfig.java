@@ -16,12 +16,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/auth/login", "/auth/logout", "/auth/register").permitAll() // Public endpoints
-                .anyRequest().authenticated() // All other endpoints require authentication
-                .and()
-                .formLogin().disable(); // Disable default Spring login page
+                .csrf(csrf -> csrf.disable()) // Disable CSRF using the new syntax
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/auth/login", "/auth/logout", "/auth/register", "/api/users").permitAll()
+                        .anyRequest().authenticated()
+                );
 
         return http.build();
     }
@@ -32,12 +31,18 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authManager(HttpSecurity http, UserDetailsServiceImpl userDetailsService)
-            throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
+    public AuthenticationManager authenticationManager(
+            HttpSecurity http,
+            UserDetailsServiceImpl userDetailsService,
+            PasswordEncoder passwordEncoder) throws Exception {
+
+        AuthenticationManagerBuilder authenticationManagerBuilder =
+                http.getSharedObject(AuthenticationManagerBuilder.class);
+
+        authenticationManagerBuilder
                 .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder())
-                .and()
-                .build();
+                .passwordEncoder(passwordEncoder);
+
+        return authenticationManagerBuilder.build();
     }
 }

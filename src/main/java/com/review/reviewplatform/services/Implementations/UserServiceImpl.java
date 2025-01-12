@@ -6,9 +6,12 @@ import com.review.reviewplatform.repositories.UserImageRepository;
 import com.review.reviewplatform.repositories.UserRepository;
 import com.review.reviewplatform.services.Interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
+
+import java.util.Base64;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,10 +21,20 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserImageRepository userImageRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
     @Override
     public User createUser(User user) {
+        if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("Username or email already exists");
+        }
+        user.setPassword(passwordEncoder.encode(user.getPassword())); // Hash password
+        user.setActive(true); // Ensure user is active
         return userRepository.save(user);
     }
+
 
     @Override
     public User getUserById(Long id) {

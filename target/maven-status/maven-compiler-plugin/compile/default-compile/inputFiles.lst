@@ -1,5 +1,8 @@
+C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\config\CorsConfig.java
 C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\config\FirebaseConfig.java
 C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\config\MultipartConfig.java
+C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\config\SecurityConfig.java
+C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\controllers\AuthController.java
 C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\controllers\BusinessController.java
 C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\controllers\CategoryController.java
 C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\controllers\ImageController.java
@@ -20,6 +23,7 @@ C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backen
 C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\services\Implementations\CategoryServiceImpl.java
 C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\services\Implementations\FirebaseStorageServiceImpl.java
 C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\services\Implementations\ReviewServiceImpl.java
+C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\services\Implementations\UserDetailsServiceImpl.java
 C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\services\Implementations\UserServiceImpl.java
 C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\services\Interfaces\BusinessService.java
 C:\Users\noelj\Desktop\masters\wraclaw politech\Semester2\java&xml\Review\backend\src\main\java\com\review\reviewplatform\services\Interfaces\CategoryService.java

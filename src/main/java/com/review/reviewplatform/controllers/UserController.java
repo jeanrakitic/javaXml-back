@@ -1,10 +1,12 @@
 package com.review.reviewplatform.controllers;
 
 import com.review.reviewplatform.models.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import com.review.reviewplatform.services.Interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import com.review.reviewplatform.repositories.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,8 +19,20 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.ok(userService.createUser(user));
+    public ResponseEntity<String> createUser(@RequestBody User user) {
+        // Check if username or email already exists
+        if (userService.getUserByUsername(user.getUsername()) != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("<message>Username already exists</message>");
+        }
+
+        if (userService.getUserByEmail(user.getEmail()) != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("<message>Email already exists</message>");
+        }
+
+        // Create the user
+        userService.createUser(user);
+
+        return ResponseEntity.ok("<message>Registration successful</message>");
     }
 
     @GetMapping("/{id}")
